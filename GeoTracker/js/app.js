@@ -351,6 +351,20 @@ define(function(require) {
     saveAs(blob, "test.gpx");
   });
 
+  // Track email
+  $('#btn_emailTrack').on('click', function() {
+    var gpx = geoTracker.GPX.exportTrack(currentTrack, {serialize: true}),
+      createEmail = new MozActivity({
+        name: "new",
+          data: {
+            type : "mail",
+            url: "mailto:?body=" + gpx,
+          }
+      });
+  });
+
+
+
   function roundTo(number, precision) {
     return parseFloat(number.toFixed(precision));
   }
